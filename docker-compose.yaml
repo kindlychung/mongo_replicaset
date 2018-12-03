@@ -6,7 +6,7 @@ services:
     image: mongo:4.0-xenial
     networks:
       mongo_net:
-        ipv4_address: 172.20.0.5
+        ipv4_address: 172.16.1.2
     ports:
       - 27017:27017
     restart: always
@@ -17,7 +17,7 @@ services:
     image: mongo:4.0-xenial
     networks:
       mongo_net:
-        ipv4_address: 172.20.0.5
+        ipv4_address: 172.16.1.3
     ports:
       - 27018:27018
     restart: always
@@ -28,7 +28,7 @@ services:
     image: mongo:4.0-xenial
     networks:
       mongo_net:
-        ipv4_address: 172.20.0.5
+        ipv4_address: 172.16.1.4
     ports:
       - 27019:27019
     restart: always
@@ -36,6 +36,4 @@ services:
 
 networks:
   mongo_net:
-    ipam:
-      config:
-        - subnet: 172.20.0.0/24
+    external: true
