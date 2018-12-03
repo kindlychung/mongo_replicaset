@@ -5,7 +5,8 @@ services:
     container_name: localmongo1
     image: mongo:4.0-xenial
     networks:
-      - mongo_net
+      mongo_net:
+        ipv4_address: 172.20.0.5
     ports:
       - 27017:27017
     restart: always
@@ -15,7 +16,8 @@ services:
     container_name: localmongo2
     image: mongo:4.0-xenial
     networks:
-      - mongo_net
+      mongo_net:
+        ipv4_address: 172.20.0.5
     ports:
       - 27018:27018
     restart: always
@@ -25,8 +27,15 @@ services:
     container_name: localmongo3
     image: mongo:4.0-xenial
     networks:
-      - mongo_net
+      mongo_net:
+        ipv4_address: 172.20.0.5
     ports:
       - 27019:27019
     restart: always
     entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0" ]
+
+networks:
+  mongo_net:
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24
